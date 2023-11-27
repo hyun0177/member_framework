@@ -1,4 +1,11 @@
+환경
+IntelliJ IDEA 2023.2.5 Ultimate
+Oracle JDk 11.0.20
+mysql 8.0
+mybatis-3.5.14
+tomcat 9
 
+----------------
 1. 회원 가입, 회원 가입 완료
 
 @Mappint, @GetMapping
