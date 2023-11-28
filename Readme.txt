@@ -16,3 +16,9 @@ root-context 설정 ( db , mybatis 연동 ) - 사용할 db 계정의 정보 확�
 3. mybatis 의존성 추가 private final SqlSessionTemplate sql; return sql.insert("Member.save", memberDTO);
     Mapper에 namespace 구분 잘 해야함
     경로는 보통 풀 경로를 써야함 근데 mybatis-config 파일에서 alises 를 이용해 경로 이름 설정 가능(좀 더 편리)
+
+------
+
+로그인 기능
+
+Mapper- select 사용시 resulttype이 필요함
