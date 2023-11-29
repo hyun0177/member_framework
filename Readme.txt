@@ -31,3 +31,9 @@ root-context 설정 ( db , mybatis 연동 ) - 사용할 db 계정의 정보 확�
 Mapper- select 사용시 resulttype이 필요함
 로그인 성공시 main 페이지 이동 // main 페이지 view 패키지에 생성
 login() 구현
+
+-------
+회원 목록 조회 기능
+
+membercontroller findALL 메소드 작성(Model model ) 매개변수로, memberrepository 에도 findALL()선언
+return "list" -> list jsp 파일로 이동
