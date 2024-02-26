@@ -21,6 +21,14 @@
         <th>name</th>
         <td>${member.memberName}</td>
     </tr>
+    <tr>
+        <th>age</th>
+        <td>${member.memberAge}</td>
+    </tr>
+    <tr>
+        <th>mobile</th>
+        <td>${member.memberMobile}</td>
+    </tr>
 </table>
 </body>
 </html>
