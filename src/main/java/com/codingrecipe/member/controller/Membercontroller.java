@@ -52,4 +52,16 @@ public class Membercontroller {
         model.addAttribute("memberList", memberDTOList);
         return "list";
     }
+
+    @GetMapping("/member")
+    public String findById(@RequestParam("id") Long id, Model model){
+        MemberDTO memberDTO = memberService.findByID(id);
+        model.addAttribute("member", memberDTO);
+        return "detail";
+    }
+    @GetMapping("/member/delete")
+    public String delete(@RequestParam("id") Long id){
+        memberService.delete(id);
+        return "redirect:/member/";
+    }
 }

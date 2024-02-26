@@ -30,4 +30,11 @@ public class MemberService {
     public List<MemberDTO> findAll() {
         return memberRepository.findAll();
     }
+    public MemberDTO findByID(Long id) {
+        return memberRepository.findByid(id);
+    }
+
+    public void delete(Long id) {
+        memberRepository.delete(id);
+    }
 }
