@@ -37,3 +37,10 @@ login() 구현
 
 membercontroller findALL 메소드 작성(Model model ) 매개변수로, memberrepository 에도 findALL()선언
 return "list" -> list jsp 파일로 이동
+
+------
+
+수정 기능
+String loginEmail = (String) session.getAttribute("loginEmail");
+
+session~의 형은 Ojbect 따라서 String변수인 loginEmail에 넣기 위해서 더 범위가 넓은 Object객체가 String으로 형변환을 해주어야 한다.

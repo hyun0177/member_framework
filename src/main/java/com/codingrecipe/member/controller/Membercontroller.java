@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -16,7 +15,6 @@ import java.util.List;
 public class Membercontroller {
     private final MemberService memberService;
 
-    //    @GetMapping("/member/save") // /member/member/save
     @GetMapping("/save")
     public String saveForm() {
         return "save";
@@ -38,15 +36,20 @@ public class Membercontroller {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute MemberDTO memberDTO,
-                        HttpSession session) {
+    public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session, Model model) {
         boolean loginResult = memberService.login(memberDTO);
         if (loginResult) {
             session.setAttribute("loginEmail", memberDTO.getMemberEmail());
             return "main";
         } else {
+            model.addAttribute("errorMessage", "로그인에 실패하였습니다. 아이디와 비밀번호를 확인해주세요.");
             return "login";
         }
+    }
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/member/login";
     }
 
     @GetMapping("/")
@@ -56,7 +59,6 @@ public class Membercontroller {
         return "list";
     }
 
-    // /member?id=1
     @GetMapping
     public String findById(@RequestParam("id") Long id, Model model) {
         MemberDTO memberDTO = memberService.findById(id);
@@ -70,17 +72,14 @@ public class Membercontroller {
         return "redirect:/member/";
     }
 
-    // 수정화면 요청
     @GetMapping("/update")
     public String updateForm(HttpSession session, Model model) {
-        // 세션에 저장된 나의 이메일 가져오기
         String loginEmail = (String) session.getAttribute("loginEmail");
         MemberDTO memberDTO = memberService.findByMemberEmail(loginEmail);
         model.addAttribute("member", memberDTO);
         return "update";
     }
 
-    // 수정 처리
     @PostMapping("/update")
     public String update(@ModelAttribute MemberDTO memberDTO) {
         boolean result = memberService.update(memberDTO);
@@ -98,4 +97,13 @@ public class Membercontroller {
         return checkResult;
     }
 
+    @GetMapping("/index_write")
+    public String index_write(){
+        return "index_write";
+    }
+
+    @GetMapping("/index")
+    public String index(){
+        return "index";
+    }
 }

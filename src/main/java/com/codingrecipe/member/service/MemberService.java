@@ -18,10 +18,13 @@ public class MemberService {
 
     public boolean login(MemberDTO memberDTO) {
         MemberDTO loginMember = memberRepository.login(memberDTO);
-        if (loginMember != null) {
-            return true;
-        } else {
+
+        if (loginMember == null) {
             return false;
+        } else if (!loginMember.getMemberPassword().equals(memberDTO.getMemberPassword())) {
+            return false;
+        } else {
+            return true;
         }
     }
 
